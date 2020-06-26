@@ -3,6 +3,7 @@ package com.github.ronquilloaeon
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.option
+import java.io.File
 
 /*
  * Basic usage: ./starlink above --api-key
@@ -19,6 +20,9 @@ class Above: CliktCommand(help = "See what Starlink satellites are visible from 
 
     override fun run() {
         echo("Ah yeah! $apiKey")
+        val fileName = "src/test/res/starlink.txt"
+        val parser = TLEParser(File(fileName).readLines())
+        println(parser.satellites.values)
     }
 }
 
